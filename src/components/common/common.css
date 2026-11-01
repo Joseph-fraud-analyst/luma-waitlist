@@ -1,0 +1,124 @@
+/* ---------- Layout ---------- */
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(0.9rem, 1.4vw, 1.5rem) 1.25rem clamp(3rem, 6vh, 5.5rem);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(0.9rem, 1.7vw, 1.75rem) clamp(1.25rem, 5vw, 5.25rem) 0 clamp(1.25rem, 5.3vw, 5.5rem);
+}
+
+.site-header__link {
+  display: inline-flex;
+  align-items: center;
+  height: clamp(2.6rem, 3.2vw, 3.375rem);
+  padding: 0 clamp(1.1rem, 1.75vw, 1.8rem);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  box-shadow: 0 6px 24px rgba(60, 110, 200, 0.12);
+  font-size: clamp(0.92rem, 1.05vw, 1.1rem);
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-navy);
+}
+
+.site-header__link:hover {
+  color: var(--color-blue);
+}
+
+/* ---------- Background ---------- */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 48% 42% at 50% 40%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #d7ecfd 0%, #e9f4fe 24%, #f9fcff 46%, #f4f9ff 70%, #e4f3fe 100%);
+}
+
+/* The artwork scales to cover the screen but stays pinned to the bottom. */
+.bg__art {
+  --art-width: max(100vw, min(177.78vh, 200vw));
+  position: absolute;
+  left: 50%;
+  /* On wide, short windows, sink the artwork so the waves stay below the content. */
+  bottom: calc(min(0px, 100vh - var(--art-width) * 0.5628) * 0.6);
+  display: block;
+  width: var(--art-width);
+  height: auto;
+  aspect-ratio: 1672 / 941;
+  transform: translateX(-50%);
+}
+
+/* ---------- Button ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 1.75rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, #0160ff, #0055f4);
+  box-shadow: var(--shadow-button);
+  color: #fff;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-blue);
+  box-shadow: var(--shadow-field);
+}
+
+.btn__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

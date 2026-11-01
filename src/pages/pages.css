@@ -1,0 +1,27 @@
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  max-width: 34rem;
+  padding-top: clamp(1rem, 6vh, 4rem);
+  text-align: center;
+}
+
+.success__title {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-navy);
+}
+
+.success__text {
+  margin-bottom: 0.75rem;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.success .btn {
+  text-decoration: none;
+}

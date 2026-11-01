@@ -1,0 +1,54 @@
+.counter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  width: min(100%, 37.1rem);
+  margin-top: clamp(1rem, 1.55vw, 1.6rem);
+  padding-top: 0.85rem;
+}
+
+/* Divider that fades out at both ends */
+.counter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #b9cdef 20%, #b9cdef 80%, transparent);
+}
+
+.counter__number {
+  min-width: 5.2ch;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 2.45vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-blue);
+}
+
+.counter__number--loading {
+  height: 1.1em;
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, #e3eeff 25%, #f3f8ff 50%, #e3eeff 75%);
+  background-size: 200% 100%;
+  animation: counter-shimmer 1.4s ease-in-out infinite;
+}
+
+.counter__text {
+  max-width: 14rem;
+  font-size: clamp(0.9rem, 1.02vw, 1.06rem);
+  line-height: 1.35;
+  color: var(--color-muted);
+}
+
+@keyframes counter-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

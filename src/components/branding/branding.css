@@ -1,0 +1,91 @@
+/*
+ * The Lumaya orb: a deep blue disc, a brighter cyan rim, a small white-hot core
+ * and a soft cyan glow around it.
+ */
+.orb {
+  --orb-size: 64px;
+  position: relative;
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: var(--orb-size);
+  height: var(--orb-size);
+}
+
+.orb::before {
+  content: '';
+  position: absolute;
+  inset: -4%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(34, 170, 255, 0.6) 52%,
+    rgba(34, 170, 255, 0.28) 64%,
+    rgba(34, 170, 255, 0) 76%
+  );
+  filter: blur(calc(var(--orb-size) * 0.05));
+}
+
+.orb__core {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    #ffffff 0 9%,
+    #c9f4ff 14%,
+    #4cc3ff 23%,
+    #0d63ff 37%,
+    #0a52f0 72%,
+    #1a8dff 95%,
+    #38b6ff 100%
+  );
+  box-shadow: 0 0 calc(var(--orb-size) * 0.16) rgba(0, 140, 255, 0.5);
+}
+
+/* Faint highlight arc at the top left */
+.orb__core::after {
+  content: '';
+  position: absolute;
+  inset: 7%;
+  border-radius: 50%;
+  border: calc(var(--orb-size) * 0.025) solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(-38deg);
+}
+
+.orb--pulse .orb__core {
+  animation: orb-breathe 4s ease-in-out infinite;
+}
+
+@keyframes orb-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  text-decoration: none;
+}
+
+.logo .orb {
+  --orb-size: clamp(3rem, 3.83vw, 4rem);
+}
+
+.logo__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.51vw, 2.625rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-navy);
+}

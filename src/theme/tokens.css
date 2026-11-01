@@ -1,0 +1,21 @@
+:root {
+  --color-navy: #0b1546;
+  --color-muted: #5b6690;
+  --color-body: #4a5880;
+  --color-label: #5a6a96;
+  --color-tagline: #5b7be0;
+  --color-blue: #0159ff;
+  --color-blue-deep: #0a4fe8;
+  --color-cyan: #04b9fd;
+  --color-tile: rgba(222, 234, 252, 0.72);
+  --color-surface: #ffffff;
+  --color-border: rgba(255, 255, 255, 0.9);
+  --color-error: #c4262e;
+
+  --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --radius-pill: 999px;
+  --shadow-field: 0 10px 40px rgba(60, 110, 200, 0.14);
+  --shadow-button: 0 5px 16px rgba(1, 89, 254, 0.25);
+}
