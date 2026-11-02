@@ -44,7 +44,7 @@ export function Countdown() {
   return (
     <section className="countdown" aria-label="Time until launch">
       <p className="countdown__label">
-        Launching on {formatLaunchDate(launchAt)}
+        {/* Launching on {formatLaunchDate(launchAt)} */}
       </p>
 
       <div className="countdown__tiles" role="timer">
