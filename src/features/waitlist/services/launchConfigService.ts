@@ -52,7 +52,7 @@ export async function fetchLaunchInfo(): Promise<LaunchInfo> {
   };
 }
 
-/** "11 January 2027", shown in the timezone the backend gives for the launch. */
+/** "1 January 2027", shown in the timezone the backend gives for the launch. */
 export function formatLaunchDate(iso: string, timeZone: string): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';

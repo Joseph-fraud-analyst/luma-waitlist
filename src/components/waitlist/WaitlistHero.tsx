@@ -1,5 +1,7 @@
 import { site } from '../../config/site';
 import './waitlist.css';
+import { WeatherScenes } from '../scenes/Weatherscences';
+
 
 export function WaitlistHero() {
   const [lineOne, lineTwo] = site.headline;
@@ -9,6 +11,7 @@ export function WaitlistHero() {
 
   return (
     <header className="hero">
+      <WeatherScenes />
       <p className="hero__tagline">{site.tagline}</p>
 
       <h1 className="hero__title">
