@@ -21,7 +21,7 @@ function formatLaunchDate(launchAt: string, timeZone: string): string {
   try {
     return date.toLocaleDateString('en-GB', { ...options, timeZone });
   } catch {
-    // Unknown timezone name: fall back to UTC rather than failing.
+    // Unknown timezone name: fall back to UTC rather than failing//.
     return date.toLocaleDateString('en-GB', { ...options, timeZone: 'UTC' });
   }
 }
