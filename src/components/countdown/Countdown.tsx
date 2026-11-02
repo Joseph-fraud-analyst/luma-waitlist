@@ -4,25 +4,37 @@ import './countdown.css';
 
 const pad = (value: number) => String(value).padStart(2, '0');
 
-function formatLaunchDate(launchAt: string): string {
+/** "1 January 2027", in the timezone the backend gives for the launch. */
+function formatLaunchDate(launchAt: string, timeZone: string): string {
   const date = new Date(launchAt);
 
   if (Number.isNaN(date.getTime())) {
     return '';
   }
 
-  return date.toLocaleDateString('en-GB', {
+  const options: Intl.DateTimeFormatOptions = {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-    timeZone: 'UTC',
-  });
+  };
+
+  try {
+    return date.toLocaleDateString('en-GB', { ...options, timeZone });
+  } catch {
+    // Unknown timezone name: fall back to UTC rather than failing.
+    return date.toLocaleDateString('en-GB', { ...options, timeZone: 'UTC' });
+  }
 }
 
 export function Countdown() {
-  const { launchAt, status } = useWaitlistConfig();
+  const { launchAt, timezone, status, isLoading } = useWaitlistConfig();
 
   const { days, hours, minutes, seconds, isComplete } = useCountdown(launchAt);
+
+  // Wait for the backend's date, so the page never flashes the fallback date first.
+  if (isLoading) {
+    return null;
+  }
 
   const hasLaunched = status === 'LAUNCHED' || isComplete;
 
@@ -34,6 +46,8 @@ export function Countdown() {
     );
   }
 
+  const label = formatLaunchDate(launchAt, timezone);
+
   const units = [
     { label: 'Days', value: String(days) },
     { label: 'Hours', value: pad(hours) },
@@ -43,9 +57,7 @@ export function Countdown() {
 
   return (
     <section className="countdown" aria-label="Time until launch">
-      <p className="countdown__label">
-        {/* Launching on {formatLaunchDate(launchAt)} */}
-      </p>
+      {label ? <p className="countdown__label">Launching on {label}</p> : null}
 
       <div className="countdown__tiles" role="timer">
         {units.map((unit) => (
