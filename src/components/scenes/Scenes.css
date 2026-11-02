@@ -1,29 +1,45 @@
 /* ---------- Placement ---------- */
+
+/* Phones, tablets and short windows: a row with both scenes inside the hero,
+   right after the intro text. (The hero is a flex column, so `order` moves it.) */
 .weather {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
+  order: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(0.5rem, 3vw, 2rem);
+  width: 100%;
+  margin-top: clamp(0.75rem, 2.5vw, 1.5rem);
   pointer-events: none;
 }
 
 .weather__scene {
-  position: absolute;
-  bottom: clamp(3.5rem, 15vh, 11rem);
-  width: clamp(8rem, 13vw, 15.5rem);
+  width: clamp(7.5rem, 33vw, 13rem);
 }
 
-.weather__scene--left {
-  left: clamp(0.5rem, 2.2vw, 3.5rem);
-}
-
-.weather__scene--right {
-  right: clamp(0.5rem, 2.2vw, 3.5rem);
-}
-
-/* Only show them where there is room beside the content. */
-@media (max-width: 1239px), (max-height: 640px) {
+/* Wide, tall screens: float them beside the content instead. */
+@media (min-width: 1240px) and (min-height: 641px) {
   .weather {
-    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: block;
+    width: auto;
+    margin: 0;
+  }
+
+  .weather__scene {
+    position: absolute;
+    bottom: clamp(3.5rem, 15vh, 11rem);
+    width: clamp(8rem, 13vw, 15.5rem);
+  }
+
+  .weather__scene--left {
+    left: clamp(0.5rem, 2.2vw, 3.5rem);
+  }
+
+  .weather__scene--right {
+    right: clamp(0.5rem, 2.2vw, 3.5rem);
   }
 }
 
