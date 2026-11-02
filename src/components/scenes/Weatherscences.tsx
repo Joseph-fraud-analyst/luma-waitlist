@@ -1,6 +1,6 @@
 import { HeatScene } from './Heatscene';
 import { WindScene } from './Windscene';
-import './scenes.css';
+
 
 /** Two ambient illustrations beside the waitlist: wind on the left, heat on the right. */
 export function WeatherScenes() {
