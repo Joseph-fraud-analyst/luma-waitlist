@@ -36,9 +36,8 @@ export function Countdown() {
     return null;
   }
 
-  const hasLaunched = status === 'LAUNCHED' || isComplete;
-
-  if (hasLaunched) {
+  // After launch: show the live message, not the countdown.
+  if (status === 'LAUNCHED' || isComplete) {
     return (
       <p className="countdown__label">
         Lumaya is live. Check your inbox for early access.
