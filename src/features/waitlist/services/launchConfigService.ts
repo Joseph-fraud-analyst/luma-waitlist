@@ -1,10 +1,10 @@
 // Self-contained on purpose: it reads the launch date straight from the backend
 // and does not depend on the signup service or its types.
+import { env } from '../../../config/env';
 
-const API_BASE = ((import.meta.env.VITE_API_BASE_URL as string | undefined) ?? '').replace(/\/$/, '');
-const FALLBACK_LAUNCH_AT =
-  (import.meta.env.VITE_LAUNCH_DATE as string | undefined) || '2027-01-11T00:00:00Z';
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true';
+const API_BASE = env.apiBaseUrl;
+const FALLBACK_LAUNCH_AT = env.launchDate;
+const USE_MOCK = env.useMock;
 const TIMEOUT_MS = 4000;
 
 export type LaunchStatusValue = 'UPCOMING' | 'LAUNCHED';
@@ -35,6 +35,7 @@ export function fallbackLaunchInfo(): LaunchInfo {
 }
 
 export async function fetchLaunchInfo(): Promise<LaunchInfo> {
+  // env.useMock is already true when no API URL is set.
   if (!API_BASE || USE_MOCK) return fallbackLaunchInfo();
 
   const response = await fetch(`${API_BASE}/v1/waitlist/config`, {

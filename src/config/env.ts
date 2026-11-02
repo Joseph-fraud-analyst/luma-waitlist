@@ -23,7 +23,7 @@ export const env = {
     (
       import.meta.env
         .VITE_LAUNCH_DATE as string | undefined
-    ) || '2027-01-11T00:00:00Z',
+    ) || '2027-01-01T00:00:00Z',
 
   /**
    * Mock mode is enabled explicitly or automatically

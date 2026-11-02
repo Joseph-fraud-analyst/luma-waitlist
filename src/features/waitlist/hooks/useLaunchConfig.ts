@@ -11,7 +11,7 @@ export interface LaunchDetails {
   launchAt: string;
   timezone: string;
   status: LaunchStatusValue;
-  /** Human-readable date, e.g. "11 January 2027". */
+  /** Human-readable date, e.g. "1 January 2027". */
   label: string;
 }
 
